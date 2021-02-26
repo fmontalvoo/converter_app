@@ -8,6 +8,8 @@ public class ConverterController {
     private final BigInteger SIXTEEN = BigInteger.valueOf(16);
 
     public String convert(String number, int option) {
+        if (number == null || number.isEmpty()) return "";
+
         switch (option) {
             case 1:
                 return binaryToHexadecimal(number);
@@ -34,7 +36,7 @@ public class ConverterController {
             case 12:
                 return hexadecimalToBinary(number);
             default:
-                return "NaN";
+                return "";
         }
     }
 

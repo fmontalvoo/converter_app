@@ -13,6 +13,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.fmontalvoo.converter.controller.ConverterController;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText txtNumero;
@@ -23,6 +25,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btnClear;
     private Button btnDelete;
 
+    private ConverterController converterController;
+
+    private int optionA;
+    private int optionB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
-        numbers = new Button[16];
+        converterController = new ConverterController();
 
         txtNumero = findViewById(R.id.txtNumber);
         txtNumero.setInputType(InputType.TYPE_NULL);
@@ -43,15 +49,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         spnInicio.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                int option = spnInicio.getSelectedItemPosition();
-                if (option == 0)
-                    binaryConfig();
-                if (option == 1)
-                    octalConfig();
-                if (option == 2)
-                    decimalConfig();
-                if (option == 3)
-                    hexadecimalConfig();
+                int a = optionA, b = -1;
+                String txt = txtNumero.getText().toString();
+                optionA = spnInicio.getSelectedItemPosition();
+                switch (optionA) {
+                    case 0:
+                        binaryConfig();
+                        b = 3;
+                        break;
+                    case 1:
+                        octalConfig();
+                        b = 2;
+                        break;
+                    case 2:
+                        decimalConfig();
+                        b = 1;
+                        break;
+                    case 3:
+                        hexadecimalConfig();
+                        b = 0;
+                        break;
+                }
+                txtNumero.setText(converterController.convert(txt, options(a, b)));
             }
 
             @Override
@@ -67,7 +86,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         spnObjetivo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+                optionB = spnObjetivo.getSelectedItemPosition();
+                convert();
             }
 
             @Override
@@ -77,6 +97,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
 
         txtResultado = findViewById(R.id.txtResult);
+
+        numbers = new Button[16];
 
         numbers[0] = findViewById(R.id.btnZero);
         numbers[1] = findViewById(R.id.btnOne);
@@ -108,6 +130,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+        int len = txtNumero.length();
         switch (v.getId()) {
             case R.id.btnZero:
                 txtNumero.append("0");
@@ -164,13 +187,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 txtResultado.setText("");
                 break;
             case R.id.btnDelete:
-                int len = txtNumero.length();
                 if (len != 0) {
                     txtNumero.setText(txtNumero.getText().toString().substring(0, len - 1));
                     txtResultado.setText("");
                 }
                 break;
         }
+        if (len >= 0) convert();
+    }
+
+    public void convert() {
+        if (options(optionA, optionB) == -1)
+            txtResultado.setText(txtNumero.getText());
+        else
+            txtResultado.setText(converterController.convert(txtNumero.getText().toString(), options(optionA, optionB)));
     }
 
     public void binaryConfig() {
@@ -194,5 +224,41 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void activateAndDeactivateNumbers(int min, int max, boolean value) {
         for (int i = min; i < max; i++)
             numbers[i].setEnabled(value);
+    }
+
+    public int options(int optionA, int optionB) {
+        //Binario
+        if (optionA == 0 && optionB == 0)
+            return 1;
+        if (optionA == 0 && optionB == 1)
+            return 2;
+        if (optionA == 0 && optionB == 2)
+            return 3;
+
+        //Octal
+        if (optionA == 1 && optionB == 0)
+            return 4;
+        if (optionA == 1 && optionB == 1)
+            return 5;
+        if (optionA == 1 && optionB == 3)
+            return 6;
+
+        //Decimal
+        if (optionA == 2 && optionB == 0)
+            return 7;
+        if (optionA == 2 && optionB == 2)
+            return 8;
+        if (optionA == 2 && optionB == 3)
+            return 9;
+
+        //Hexadecimal
+        if (optionA == 3 && optionB == 1)
+            return 10;
+        if (optionA == 3 && optionB == 2)
+            return 11;
+        if (optionA == 3 && optionB == 3)
+            return 12;
+
+        return -1;
     }
 }
