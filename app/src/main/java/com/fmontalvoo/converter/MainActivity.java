@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         spnInicio = findViewById(R.id.spnInicio);
         String[] spnInicioValues = {getString(R.string.binary), getString(R.string.octal),
                 getString(R.string.decimal), getString(R.string.hexadecimal)};
-        spnInicio.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, spnInicioValues));
+        spnInicio.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, spnInicioValues));
         spnInicio = findViewById(R.id.spnInicio);
         spnInicio.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         spnObjetivo = findViewById(R.id.spnObjetivo);
         String[] spnObjetivoValues = {getString(R.string.hexadecimal), getString(R.string.decimal),
                 getString(R.string.octal), getString(R.string.binary)};
-        spnObjetivo.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, spnObjetivoValues));
+        spnObjetivo.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, spnObjetivoValues));
         spnObjetivo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
