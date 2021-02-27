@@ -96,6 +96,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
 
         txtResultado = findViewById(R.id.txtResult);
+        txtResultado.setTextIsSelectable(true);
 
         numbers = new Button[16];
 
