@@ -193,7 +193,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
         }
-        if (len >= 0) convert();
+        convert();
     }
 
     public void convert() {
