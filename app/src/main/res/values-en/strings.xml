@@ -5,6 +5,7 @@
     <string name="octal">Octal</string>
     <string name="decimal">Decimal</string>
     <string name="hexadecimal">Hexadecimal</string>
+    <string name="txt_to">To</string>
     <string name="txt_result">Result</string>
     <string name="btn_a">A</string>
     <string name="btn_b">B</string>

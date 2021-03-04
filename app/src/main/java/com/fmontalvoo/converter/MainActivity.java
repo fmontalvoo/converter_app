@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 int a = optionA, b = -1;
                 String txt = txtNumber.getText().toString();
                 optionA = spnBase.getSelectedItemPosition();
+                view.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                 switch (optionA) {
                     case 0:
                         binaryConfig();
@@ -84,6 +85,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         spnGoal.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                view.setRotationY(180);
+                view.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                 optionB = spnGoal.getSelectedItemPosition();
                 convert();
             }
