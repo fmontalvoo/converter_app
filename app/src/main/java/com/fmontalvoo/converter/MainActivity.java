@@ -1,7 +1,6 @@
 package com.fmontalvoo.converter;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 
 import android.os.Bundle;
 import android.text.InputType;
@@ -17,10 +16,10 @@ import com.fmontalvoo.converter.controller.ConverterController;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private EditText txtNumero;
-    private Spinner spnInicio;
-    private Spinner spnObjetivo;
-    private TextView txtResultado;
+    private EditText txtNumber;
+    private Spinner spnBase;
+    private Spinner spnGoal;
+    private TextView txtResult;
     private Button numbers[];
     private Button btnClear;
     private Button btnDelete;
@@ -37,20 +36,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         converterController = new ConverterController();
 
-        txtNumero = findViewById(R.id.txtNumber);
-        txtNumero.setInputType(InputType.TYPE_NULL);
+        txtNumber = findViewById(R.id.txtNumber);
+        txtNumber.setInputType(InputType.TYPE_NULL);
 
-        spnInicio = findViewById(R.id.spnInicio);
-        String[] spnInicioValues = {getString(R.string.binary), getString(R.string.octal),
+        spnBase = findViewById(R.id.spnBase);
+        String[] spnBaseValues = {getString(R.string.binary), getString(R.string.octal),
                 getString(R.string.decimal), getString(R.string.hexadecimal)};
-        spnInicio.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, spnInicioValues));
-        spnInicio = findViewById(R.id.spnInicio);
-        spnInicio.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spnBase.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, spnBaseValues));
+        spnBase = findViewById(R.id.spnBase);
+        spnBase.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 int a = optionA, b = -1;
-                String txt = txtNumero.getText().toString();
-                optionA = spnInicio.getSelectedItemPosition();
+                String txt = txtNumber.getText().toString();
+                optionA = spnBase.getSelectedItemPosition();
                 switch (optionA) {
                     case 0:
                         binaryConfig();
@@ -69,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         b = 0;
                         break;
                 }
-                txtNumero.setText(converterController.convert(txt, options(a, b)));
+                txtNumber.setText(converterController.convert(txt, options(a, b)));
             }
 
             @Override
@@ -78,14 +77,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-        spnObjetivo = findViewById(R.id.spnObjetivo);
-        String[] spnObjetivoValues = {getString(R.string.hexadecimal), getString(R.string.decimal),
+        spnGoal = findViewById(R.id.spnGoal);
+        String[] spnGoalValues = {getString(R.string.hexadecimal), getString(R.string.decimal),
                 getString(R.string.octal), getString(R.string.binary)};
-        spnObjetivo.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, spnObjetivoValues));
-        spnObjetivo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spnGoal.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, spnGoalValues));
+        spnGoal.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                optionB = spnObjetivo.getSelectedItemPosition();
+                optionB = spnGoal.getSelectedItemPosition();
                 convert();
             }
 
@@ -95,8 +94,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-        txtResultado = findViewById(R.id.txtResult);
-        txtResultado.setTextIsSelectable(true);
+        txtResult = findViewById(R.id.txtResult);
+        txtResult.setTextIsSelectable(true);
 
         numbers = new Button[16];
 
@@ -130,66 +129,66 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        int len = txtNumero.length();
+        int len = txtNumber.length();
         switch (v.getId()) {
             case R.id.btnZero:
-                txtNumero.append("0");
+                txtNumber.append(getString(R.string.btn_0));
                 break;
             case R.id.btnOne:
-                txtNumero.append("1");
+                txtNumber.append(getString(R.string.btn_1));
                 break;
             case R.id.btnTwo:
-                txtNumero.append("2");
+                txtNumber.append(getString(R.string.btn_2));
                 break;
             case R.id.btnThree:
-                txtNumero.append("3");
+                txtNumber.append(getString(R.string.btn_3));
                 break;
             case R.id.btnFour:
-                txtNumero.append("4");
+                txtNumber.append(getString(R.string.btn_4));
                 break;
             case R.id.btnFive:
-                txtNumero.append("5");
+                txtNumber.append(getString(R.string.btn_5));
                 break;
             case R.id.btnSix:
-                txtNumero.append("6");
+                txtNumber.append(getString(R.string.btn_6));
                 break;
             case R.id.btnSeven:
-                txtNumero.append("7");
+                txtNumber.append(getString(R.string.btn_7));
                 break;
             case R.id.btnEight:
-                txtNumero.append("8");
+                txtNumber.append(getString(R.string.btn_8));
                 break;
             case R.id.btnNine:
-                txtNumero.append("9");
+                txtNumber.append(getString(R.string.btn_9));
                 break;
 
             case R.id.btnA:
-                txtNumero.append("A");
+                txtNumber.append(getString(R.string.btn_a));
                 break;
             case R.id.btnB:
-                txtNumero.append("B");
+                txtNumber.append(getString(R.string.btn_b));
                 break;
             case R.id.btnC:
-                txtNumero.append("C");
+                txtNumber.append(getString(R.string.btn_c));
                 break;
             case R.id.btnD:
-                txtNumero.append("D");
+                txtNumber.append(getString(R.string.btn_d));
                 break;
             case R.id.btnE:
-                txtNumero.append("E");
+                txtNumber.append(getString(R.string.btn_e));
                 break;
             case R.id.btnF:
-                txtNumero.append("F");
+                txtNumber.append(getString(R.string.btn_f));
                 break;
 
             case R.id.btnClear:
-                txtNumero.setText("");
-                txtResultado.setText("");
+                txtNumber.setText("");
+                txtResult.setText("");
                 break;
             case R.id.btnDelete:
                 if (len != 0) {
-                    txtNumero.setText(txtNumero.getText().toString().substring(0, len - 1));
-                    txtResultado.setText("");
+                    txtNumber.setText(txtNumber.getText().toString().substring(0, len - 1));
+                    txtResult.setText("");
                 }
                 break;
         }
@@ -198,9 +197,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void convert() {
         if (options(optionA, optionB) == -1)
-            txtResultado.setText(txtNumero.getText());
+            txtResult.setText(txtNumber.getText());
         else
-            txtResultado.setText(converterController.convert(txtNumero.getText().toString(), options(optionA, optionB)));
+            txtResult.setText(converterController.convert(txtNumber.getText().toString(), options(optionA, optionB)));
     }
 
     public void binaryConfig() {
