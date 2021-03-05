@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Spinner spnBase;
     private Spinner spnGoal;
     private TextView txtResult;
-    private Button numbers[];
+    private Button[] numbers;
     private Button btnClear;
     private Button btnDelete;
 
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         spnBase = findViewById(R.id.spnBase);
         String[] spnBaseValues = {getString(R.string.binary), getString(R.string.octal),
                 getString(R.string.decimal), getString(R.string.hexadecimal)};
-        spnBase.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, spnBaseValues));
+        spnBase.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, spnBaseValues));
         spnBase = findViewById(R.id.spnBase);
         spnBase.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         spnGoal = findViewById(R.id.spnGoal);
         String[] spnGoalValues = {getString(R.string.hexadecimal), getString(R.string.decimal),
                 getString(R.string.octal), getString(R.string.binary)};
-        spnGoal.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, spnGoalValues));
+        spnGoal.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, spnGoalValues));
         spnGoal.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -119,8 +119,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         numbers[14] = findViewById(R.id.btnE);
         numbers[15] = findViewById(R.id.btnF);
 
-        for (int i = 0; i < numbers.length; i++)
-            numbers[i].setOnClickListener(this);
+        for (Button number : numbers) number.setOnClickListener(this);
 
         btnClear = findViewById(R.id.btnClear);
         btnClear.setOnClickListener(this);
@@ -133,76 +132,57 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         int len = txtNumber.length();
-        switch (v.getId()) {
-            case R.id.btnZero:
-                txtNumber.append(getString(R.string.btn_0));
-                break;
-            case R.id.btnOne:
-                txtNumber.append(getString(R.string.btn_1));
-                break;
-            case R.id.btnTwo:
-                txtNumber.append(getString(R.string.btn_2));
-                break;
-            case R.id.btnThree:
-                txtNumber.append(getString(R.string.btn_3));
-                break;
-            case R.id.btnFour:
-                txtNumber.append(getString(R.string.btn_4));
-                break;
-            case R.id.btnFive:
-                txtNumber.append(getString(R.string.btn_5));
-                break;
-            case R.id.btnSix:
-                txtNumber.append(getString(R.string.btn_6));
-                break;
-            case R.id.btnSeven:
-                txtNumber.append(getString(R.string.btn_7));
-                break;
-            case R.id.btnEight:
-                txtNumber.append(getString(R.string.btn_8));
-                break;
-            case R.id.btnNine:
-                txtNumber.append(getString(R.string.btn_9));
-                break;
-
-            case R.id.btnA:
-                txtNumber.append(getString(R.string.btn_a));
-                break;
-            case R.id.btnB:
-                txtNumber.append(getString(R.string.btn_b));
-                break;
-            case R.id.btnC:
-                txtNumber.append(getString(R.string.btn_c));
-                break;
-            case R.id.btnD:
-                txtNumber.append(getString(R.string.btn_d));
-                break;
-            case R.id.btnE:
-                txtNumber.append(getString(R.string.btn_e));
-                break;
-            case R.id.btnF:
-                txtNumber.append(getString(R.string.btn_f));
-                break;
-
-            case R.id.btnClear:
-                txtNumber.setText("");
+        int id = v.getId();
+        if (id == R.id.btnZero) {
+            txtNumber.append(getString(R.string.btn_0));
+        } else if (id == R.id.btnOne) {
+            txtNumber.append(getString(R.string.btn_1));
+        } else if (id == R.id.btnTwo) {
+            txtNumber.append(getString(R.string.btn_2));
+        } else if (id == R.id.btnThree) {
+            txtNumber.append(getString(R.string.btn_3));
+        } else if (id == R.id.btnFour) {
+            txtNumber.append(getString(R.string.btn_4));
+        } else if (id == R.id.btnFive) {
+            txtNumber.append(getString(R.string.btn_5));
+        } else if (id == R.id.btnSix) {
+            txtNumber.append(getString(R.string.btn_6));
+        } else if (id == R.id.btnSeven) {
+            txtNumber.append(getString(R.string.btn_7));
+        } else if (id == R.id.btnEight) {
+            txtNumber.append(getString(R.string.btn_8));
+        } else if (id == R.id.btnNine) {
+            txtNumber.append(getString(R.string.btn_9));
+        } else if (id == R.id.btnA) {
+            txtNumber.append(getString(R.string.btn_a));
+        } else if (id == R.id.btnB) {
+            txtNumber.append(getString(R.string.btn_b));
+        } else if (id == R.id.btnC) {
+            txtNumber.append(getString(R.string.btn_c));
+        } else if (id == R.id.btnD) {
+            txtNumber.append(getString(R.string.btn_d));
+        } else if (id == R.id.btnE) {
+            txtNumber.append(getString(R.string.btn_e));
+        } else if (id == R.id.btnF) {
+            txtNumber.append(getString(R.string.btn_f));
+        } else if (id == R.id.btnClear) {
+            txtNumber.setText("");
+            txtResult.setText("");
+        } else if (id == R.id.btnDelete) {
+            if (len != 0) {
+                txtNumber.setText(txtNumber.getText().toString().substring(0, len - 1));
                 txtResult.setText("");
-                break;
-            case R.id.btnDelete:
-                if (len != 0) {
-                    txtNumber.setText(txtNumber.getText().toString().substring(0, len - 1));
-                    txtResult.setText("");
-                }
-                break;
+            }
         }
         convert();
     }
 
     public void convert() {
-        if (options(optionA, optionB) == -1)
+        int option = options(optionA, optionB);
+        if (option == -1)
             txtResult.setText(txtNumber.getText());
         else
-            txtResult.setText(converterController.convert(txtNumber.getText().toString(), options(optionA, optionB)));
+            txtResult.setText(converterController.convert(txtNumber.getText().toString(), option));
     }
 
     public void binaryConfig() {

@@ -56,10 +56,16 @@ public class ConverterController {
     }
 
     private String reverse(String number) {
-        String reversed = "";
+        StringBuilder reversed = new StringBuilder();
         for (int i = number.length() - 1; i >= 0; i--)
-            reversed += number.charAt(i);
-        return reversed;
+            reversed.append(number.charAt(i));
+        return reversed.toString();
+    }
+
+    private String completeBits(String binary) {
+        if ((binary.length() % 4) == 0)
+            return binary;
+        return completeBits('0' + binary);
     }
 
     private char characters(int n) {
@@ -100,16 +106,16 @@ public class ConverterController {
         }
     }
 
-    private String binaryToHexadecimal(String binario) {
-        return decimalToHexadecimal(binaryToDecimal(binario));
+    private String binaryToHexadecimal(String binary) {
+        return decimalToHexadecimal(binaryToDecimal(binary));
     }
 
-    private String binaryToDecimal(String binario) {
-        return solve(binario, TWO);
+    private String binaryToDecimal(String binary) {
+        return solve(binary, TWO);
     }
 
-    private String binaryToOctal(String binario) {
-        return decimalToOctal(binaryToDecimal(binario));
+    private String binaryToOctal(String binary) {
+        return decimalToOctal(binaryToDecimal(binary));
     }
 
     private String octalToHexadecimal(String octal) {
@@ -125,16 +131,16 @@ public class ConverterController {
     }
 
     private String decimalToHexadecimal(String number) {
-        String hexadecimal = "";
+        StringBuilder hexadecimal = new StringBuilder();
         for (BigInteger i = new BigInteger(number); i.compareTo(BigInteger.ZERO) > 0; i = i.divide(SIXTEEN)) {
             BigInteger result = i.mod(SIXTEEN);
             if (result.compareTo(BigInteger.TEN) >= 0) {
-                hexadecimal += characters(result.intValue());
+                hexadecimal.append(characters(result.intValue()));
             } else {
-                hexadecimal += result;
+                hexadecimal.append(result);
             }
         }
-        return reverse(hexadecimal);
+        return reverse(hexadecimal.toString());
     }
 
     private String decimalToOctal(String number) {
@@ -142,17 +148,15 @@ public class ConverterController {
         for (BigInteger i = new BigInteger(number); i.compareTo(BigInteger.ZERO) > 0; i = i.divide(EIGHT)) {
             octal += i.mod(EIGHT);
         }
-
         return reverse(octal);
     }
 
     private String decimalToBinary(String number) {
-        String binario = "";
+        String binary = "";
         for (BigInteger i = new BigInteger(number); i.compareTo(BigInteger.ZERO) > 0; i = i.divide(TWO)) {
-            binario += i.mod(TWO);
+            binary += i.mod(TWO);
         }
-
-        return reverse(binario);
+        return completeBits(reverse(binary));
     }
 
     private String hexadecimalToDecimal(String hexadecimal) {
