@@ -110,9 +110,9 @@
                 android:layout_marginHorizontal="3dp"
                 android:layout_span="1"
                 android:layout_weight="1"
+                android:backgroundTint="@color/blue"
                 android:text="@string/btn_a"
                 android:textStyle="bold"
-                app:backgroundTint="@color/blue"
                 tools:ignore="ButtonStyle" />
 
             <Button
@@ -122,9 +122,9 @@
                 android:layout_marginHorizontal="3dp"
                 android:layout_span="1"
                 android:layout_weight="1"
+                android:backgroundTint="@color/blue"
                 android:text="@string/btn_b"
                 android:textStyle="bold"
-                app:backgroundTint="@color/blue"
                 tools:ignore="ButtonStyle" />
 
             <Button
@@ -134,9 +134,9 @@
                 android:layout_marginHorizontal="3dp"
                 android:layout_span="1"
                 android:layout_weight="1"
+                android:backgroundTint="@color/green"
                 android:text="@string/btn_7"
                 android:textStyle="bold"
-                app:backgroundTint="@color/green"
                 tools:ignore="ButtonStyle" />
 
             <Button
@@ -146,9 +146,9 @@
                 android:layout_marginHorizontal="3dp"
                 android:layout_span="1"
                 android:layout_weight="1"
+                android:backgroundTint="@color/green"
                 android:text="@string/btn_8"
                 android:textStyle="bold"
-                app:backgroundTint="@color/green"
                 tools:ignore="ButtonStyle" />
 
             <Button
@@ -158,9 +158,9 @@
                 android:layout_marginHorizontal="3dp"
                 android:layout_span="1"
                 android:layout_weight="1"
+                android:backgroundTint="@color/green"
                 android:text="@string/btn_9"
                 android:textStyle="bold"
-                app:backgroundTint="@color/green"
                 tools:ignore="ButtonStyle" />
         </TableRow>
 
@@ -177,9 +177,9 @@
                 android:layout_marginHorizontal="3dp"
                 android:layout_span="1"
                 android:layout_weight="1"
+                android:backgroundTint="@color/blue"
                 android:text="@string/btn_c"
                 android:textStyle="bold"
-                app:backgroundTint="@color/blue"
                 tools:ignore="ButtonStyle" />
 
             <Button
@@ -189,9 +189,9 @@
                 android:layout_marginHorizontal="3dp"
                 android:layout_span="1"
                 android:layout_weight="1"
+                android:backgroundTint="@color/blue"
                 android:text="@string/btn_d"
                 android:textStyle="bold"
-                app:backgroundTint="@color/blue"
                 tools:ignore="ButtonStyle" />
 
             <Button
@@ -201,9 +201,9 @@
                 android:layout_marginHorizontal="3dp"
                 android:layout_span="1"
                 android:layout_weight="1"
+                android:backgroundTint="@color/green"
                 android:text="@string/btn_4"
                 android:textStyle="bold"
-                app:backgroundTint="@color/green"
                 tools:ignore="ButtonStyle" />
 
             <Button
@@ -213,9 +213,9 @@
                 android:layout_marginHorizontal="3dp"
                 android:layout_span="1"
                 android:layout_weight="1"
+                android:backgroundTint="@color/green"
                 android:text="@string/btn_5"
                 android:textStyle="bold"
-                app:backgroundTint="@color/green"
                 tools:ignore="ButtonStyle" />
 
             <Button
@@ -225,9 +225,9 @@
                 android:layout_marginHorizontal="3dp"
                 android:layout_span="1"
                 android:layout_weight="1"
+                android:backgroundTint="@color/green"
                 android:text="@string/btn_6"
                 android:textStyle="bold"
-                app:backgroundTint="@color/green"
                 tools:ignore="ButtonStyle" />
         </TableRow>
 
@@ -244,9 +244,9 @@
                 android:layout_marginHorizontal="3dp"
                 android:layout_span="1"
                 android:layout_weight="1"
+                android:backgroundTint="@color/blue"
                 android:text="@string/btn_e"
                 android:textStyle="bold"
-                app:backgroundTint="@color/blue"
                 tools:ignore="ButtonStyle" />
 
             <Button
@@ -256,9 +256,9 @@
                 android:layout_marginHorizontal="3dp"
                 android:layout_span="1"
                 android:layout_weight="1"
+                android:backgroundTint="@color/blue"
                 android:text="@string/btn_f"
                 android:textStyle="bold"
-                app:backgroundTint="@color/blue"
                 tools:ignore="ButtonStyle" />
 
             <Button
@@ -268,9 +268,9 @@
                 android:layout_marginHorizontal="3dp"
                 android:layout_span="1"
                 android:layout_weight="1"
+                android:backgroundTint="@color/green"
                 android:text="@string/btn_1"
                 android:textStyle="bold"
-                app:backgroundTint="@color/green"
                 tools:ignore="ButtonStyle" />
 
             <Button
@@ -280,9 +280,9 @@
                 android:layout_marginHorizontal="3dp"
                 android:layout_span="1"
                 android:layout_weight="1"
+                android:backgroundTint="@color/green"
                 android:text="@string/btn_2"
                 android:textStyle="bold"
-                app:backgroundTint="@color/green"
                 tools:ignore="ButtonStyle" />
 
             <Button
@@ -292,9 +292,9 @@
                 android:layout_marginHorizontal="3dp"
                 android:layout_span="1"
                 android:layout_weight="1"
+                android:backgroundTint="@color/green"
                 android:text="@string/btn_3"
                 android:textStyle="bold"
-                app:backgroundTint="@color/green"
                 tools:ignore="ButtonStyle" />
         </TableRow>
 
@@ -311,9 +311,9 @@
                 android:layout_marginHorizontal="3dp"
                 android:layout_span="1"
                 android:layout_weight="1"
+                android:backgroundTint="@color/red"
                 android:text="@string/btn_del"
                 android:textStyle="bold"
-                app:backgroundTint="@color/red"
                 tools:ignore="ButtonStyle" />
 
             <Button
@@ -323,9 +323,9 @@
                 android:layout_marginHorizontal="3dp"
                 android:layout_span="1"
                 android:layout_weight="1"
+                android:backgroundTint="@color/red"
                 android:text="@string/btn_ac"
                 android:textStyle="bold"
-                app:backgroundTint="@color/red"
                 tools:ignore="ButtonStyle" />
 
             <Button
@@ -335,9 +335,9 @@
                 android:layout_marginHorizontal="3dp"
                 android:layout_span="3"
                 android:layout_weight="3"
+                android:backgroundTint="@color/green"
                 android:text="@string/btn_0"
                 android:textStyle="bold"
-                app:backgroundTint="@color/green"
                 tools:ignore="ButtonStyle" />
         </TableRow>
     </TableLayout>
