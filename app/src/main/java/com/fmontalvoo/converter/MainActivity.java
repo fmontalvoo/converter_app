@@ -85,7 +85,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         spnGoal.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                view.setRotationY(180);
                 view.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                 optionB = spnGoal.getSelectedItemPosition();
                 convert();
