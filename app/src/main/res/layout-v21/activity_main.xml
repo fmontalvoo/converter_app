@@ -12,15 +12,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
         android:ems="10"
         android:gravity="center"
         android:hint="@string/txt_number"
         android:importantForAutofill="no"
         android:inputType="number"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -42,7 +41,8 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:background="@android:color/transparent" />
+            android:background="@android:color/transparent"
+            android:textAlignment="center" />
 
         <TextView
             android:id="@+id/txtTo"
@@ -51,6 +51,7 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:text="@string/txt_to"
+            android:textAlignment="center"
             android:textSize="15sp"
             android:textStyle="bold" />
 
@@ -60,7 +61,8 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:background="@android:color/transparent" />
+            android:background="@android:color/transparent"
+            android:textAlignment="center" />
     </TableRow>
 
     <TextView
@@ -70,11 +72,13 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="20dp"
-        android:gravity="center"
+        android:gravity="bottom|center"
         android:hint="@string/txt_result"
         android:importantForAutofill="no"
         android:maxLines="4"
         android:minLines="1"
+        android:scrollbars="vertical"
+        android:textAlignment="center"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

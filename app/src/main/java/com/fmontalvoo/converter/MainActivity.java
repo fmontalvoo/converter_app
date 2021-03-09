@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.text.InputType;
+import android.text.method.ScrollingMovementMethod;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -51,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 String txt = txtNumber.getText().toString();
                 optionA = spnBase.getSelectedItemPosition();
                 view.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                ((TextView) view).setGravity(Gravity.CENTER);
                 switch (optionA) {
                     case 0:
                         binaryConfig();
@@ -86,6 +89,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 view.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                ((TextView) view).setGravity(Gravity.CENTER);
                 optionB = spnGoal.getSelectedItemPosition();
                 convert();
             }
@@ -98,6 +102,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         txtResult = findViewById(R.id.txtResult);
         txtResult.setTextIsSelectable(true);
+        txtResult.setMovementMethod(new ScrollingMovementMethod());
 
         numbers = new Button[16];
 
