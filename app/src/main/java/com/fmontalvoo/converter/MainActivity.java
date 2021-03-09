@@ -6,6 +6,7 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.InputType;
 import android.text.method.ScrollingMovementMethod;
 import android.view.Gravity;
@@ -76,7 +77,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         b = 0;
                         break;
                 }
-                txtNumber.setText(converterController.convert(txt, options(a, b)));
+                txtNumber.setText("");
+                txtNumber.append(converterController.convert(format(txt), options(a, b)));
             }
 
             @Override
@@ -147,44 +149,45 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         int len = txtNumber.length();
         int id = v.getId();
         if (id == R.id.btnZero) {
-            txtNumber.append(getString(R.string.btn_0));
+            appendNumber(getString(R.string.btn_0));
         } else if (id == R.id.btnOne) {
-            txtNumber.append(getString(R.string.btn_1));
+            appendNumber(getString(R.string.btn_1));
         } else if (id == R.id.btnTwo) {
-            txtNumber.append(getString(R.string.btn_2));
+            appendNumber(getString(R.string.btn_2));
         } else if (id == R.id.btnThree) {
-            txtNumber.append(getString(R.string.btn_3));
+            appendNumber(getString(R.string.btn_3));
         } else if (id == R.id.btnFour) {
-            txtNumber.append(getString(R.string.btn_4));
+            appendNumber(getString(R.string.btn_4));
         } else if (id == R.id.btnFive) {
-            txtNumber.append(getString(R.string.btn_5));
+            appendNumber(getString(R.string.btn_5));
         } else if (id == R.id.btnSix) {
-            txtNumber.append(getString(R.string.btn_6));
+            appendNumber(getString(R.string.btn_6));
         } else if (id == R.id.btnSeven) {
-            txtNumber.append(getString(R.string.btn_7));
+            appendNumber(getString(R.string.btn_7));
         } else if (id == R.id.btnEight) {
-            txtNumber.append(getString(R.string.btn_8));
+            appendNumber(getString(R.string.btn_8));
         } else if (id == R.id.btnNine) {
-            txtNumber.append(getString(R.string.btn_9));
+            appendNumber(getString(R.string.btn_9));
         } else if (id == R.id.btnA) {
-            txtNumber.append(getString(R.string.btn_a));
+            appendNumber(getString(R.string.btn_a));
         } else if (id == R.id.btnB) {
-            txtNumber.append(getString(R.string.btn_b));
+            appendNumber(getString(R.string.btn_b));
         } else if (id == R.id.btnC) {
-            txtNumber.append(getString(R.string.btn_c));
+            appendNumber(getString(R.string.btn_c));
         } else if (id == R.id.btnD) {
-            txtNumber.append(getString(R.string.btn_d));
+            appendNumber(getString(R.string.btn_d));
         } else if (id == R.id.btnE) {
-            txtNumber.append(getString(R.string.btn_e));
+            appendNumber(getString(R.string.btn_e));
         } else if (id == R.id.btnF) {
-            txtNumber.append(getString(R.string.btn_f));
+            appendNumber(getString(R.string.btn_f));
         } else if (id == R.id.btnClear) {
             txtNumber.setText("");
             txtResult.setText("");
         } else if (id == R.id.btnDelete) {
             if (len != 0) {
-                txtNumber.setText(txtNumber.getText().toString().substring(0, len - 1));
-                txtResult.setText("");
+                String txt = txtNumber.getText().toString().substring(0, len - 1);
+                txtNumber.setText("");
+                txtNumber.append(txt);
             }
         }
         convert();
@@ -195,7 +198,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (option == -1)
             txtResult.setText(txtNumber.getText());
         else
-            txtResult.setText(converterController.convert(txtNumber.getText().toString(), option));
+            txtResult.setText(format(converterController.convert(txtNumber.getText().toString(), option)));
     }
 
     public void binaryConfig() {
@@ -255,5 +258,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return 12;
 
         return -1;
+    }
+
+    public void appendNumber(String number) {
+        String txt = txtNumber.getText().toString();
+        txtNumber.setText("");
+        txt = txt.replace(" ", "").concat(number);
+        txtNumber.append(format(txt));
+    }
+
+    public String format(String input) {
+        return input.replaceAll("(.{" + "4" + "})", "$1 ").trim();
     }
 }

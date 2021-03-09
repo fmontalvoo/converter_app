@@ -9,32 +9,32 @@ public class ConverterController {
 
     public String convert(String number, int option) {
         if (number == null || number.isEmpty()) return "";
-
+        number = number.replace(" ","");
         switch (option) {
             case 1:
-                return formatOutput(binaryToHexadecimal(number));
+                return binaryToHexadecimal(number);
             case 2:
-                return formatOutput(binaryToDecimal(number));
+                return binaryToDecimal(number);
             case 3:
-                return formatOutput(binaryToOctal(number));
+                return binaryToOctal(number);
             case 4:
-                return formatOutput(octalToHexadecimal(number));
+                return octalToHexadecimal(number);
             case 5:
-                return formatOutput(octalToDecimal(number));
+                return octalToDecimal(number);
             case 6:
-                return formatOutput(octalToBinary(number));
+                return octalToBinary(number);
             case 7:
-                return formatOutput(decimalToHexadecimal(number));
+                return decimalToHexadecimal(number);
             case 8:
-                return formatOutput(decimalToOctal(number));
+                return decimalToOctal(number);
             case 9:
-                return formatOutput(decimalToBinary(number));
+                return decimalToBinary(number);
             case 10:
-                return formatOutput(hexadecimalToDecimal(number));
+                return hexadecimalToDecimal(number);
             case 11:
-                return formatOutput(hexadecimalToOctal(number));
+                return hexadecimalToOctal(number);
             case 12:
-                return formatOutput(hexadecimalToBinary(number));
+                return hexadecimalToBinary(number);
             default:
                 return "";
         }
@@ -66,10 +66,6 @@ public class ConverterController {
         if ((binary.length() % 4) == 0)
             return binary;
         return completeBits('0' + binary);
-    }
-
-    private String formatOutput(String input) {
-        return input.replaceAll("(.{" + "4" + "})", "$1 ").trim();
     }
 
     private char characters(int n) {
