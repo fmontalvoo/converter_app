@@ -12,29 +12,29 @@ public class ConverterController {
 
         switch (option) {
             case 1:
-                return binaryToHexadecimal(number);
+                return formatOutput(binaryToHexadecimal(number));
             case 2:
-                return binaryToDecimal(number);
+                return formatOutput(binaryToDecimal(number));
             case 3:
-                return binaryToOctal(number);
+                return formatOutput(binaryToOctal(number));
             case 4:
-                return octalToHexadecimal(number);
+                return formatOutput(octalToHexadecimal(number));
             case 5:
-                return octalToDecimal(number);
+                return formatOutput(octalToDecimal(number));
             case 6:
-                return octalToBinary(number);
+                return formatOutput(octalToBinary(number));
             case 7:
-                return decimalToHexadecimal(number);
+                return formatOutput(decimalToHexadecimal(number));
             case 8:
-                return decimalToOctal(number);
+                return formatOutput(decimalToOctal(number));
             case 9:
-                return decimalToBinary(number);
+                return formatOutput(decimalToBinary(number));
             case 10:
-                return hexadecimalToDecimal(number);
+                return formatOutput(hexadecimalToDecimal(number));
             case 11:
-                return hexadecimalToOctal(number);
+                return formatOutput(hexadecimalToOctal(number));
             case 12:
-                return hexadecimalToBinary(number);
+                return formatOutput(hexadecimalToBinary(number));
             default:
                 return "";
         }
@@ -66,6 +66,10 @@ public class ConverterController {
         if ((binary.length() % 4) == 0)
             return binary;
         return completeBits('0' + binary);
+    }
+
+    private String formatOutput(String input) {
+        return input.replaceAll("(.{" + "4" + "})", "$1 ").trim();
     }
 
     private char characters(int n) {
