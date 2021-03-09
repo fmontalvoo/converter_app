@@ -25,4 +25,5 @@
     <string name="btn_9">9</string>
     <string name="btn_del">DEL</string>
     <string name="btn_ac">AC</string>
+    <string name="txt_clipboard">Copiado al portapapeles</string>
 </resources>

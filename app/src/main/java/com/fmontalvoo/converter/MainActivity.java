@@ -2,6 +2,9 @@ package com.fmontalvoo.converter;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.method.ScrollingMovementMethod;
@@ -13,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.fmontalvoo.converter.controller.ConverterController;
 
@@ -101,8 +105,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
 
         txtResult = findViewById(R.id.txtResult);
-        txtResult.setTextIsSelectable(true);
         txtResult.setMovementMethod(new ScrollingMovementMethod());
+        txtResult.setOnClickListener(view -> {
+            ClipboardManager cm = (ClipboardManager) getApplicationContext().getSystemService(Context.CLIPBOARD_SERVICE);
+            ClipData clip = ClipData.newPlainText("", txtResult.getText().toString());
+            cm.setPrimaryClip(clip);
+            Toast.makeText(getApplicationContext(), getString(R.string.txt_clipboard), Toast.LENGTH_SHORT).show();
+        });
 
         numbers = new Button[16];
 
