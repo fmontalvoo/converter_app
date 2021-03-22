@@ -9,7 +9,7 @@ public class ConverterController {
 
     public String convert(String number, int option) {
         if (number == null || number.isEmpty()) return "";
-        number = number.replace(" ","");
+        number = number.replace(" ", "");
         switch (option) {
             case 1:
                 return binaryToHexadecimal(number);
@@ -163,16 +163,16 @@ public class ConverterController {
         BigInteger decimal = BigInteger.ZERO;
         final String characters = "ABCDEF";
         BigInteger len = new BigInteger(String.valueOf(hexadecimal.length()));
-        BigInteger[] oremun = new BigInteger[len.intValue()];
+        BigInteger[] number = new BigInteger[len.intValue()];
 
         for (BigInteger i = BigInteger.ZERO; i.compareTo(len) < 0; i = i.add(BigInteger.ONE)) {
             for (BigInteger j = BigInteger.ZERO; j.compareTo(BigInteger.valueOf(characters.length())) < 0; j = j
                     .add(BigInteger.ONE)) {
                 char c = hexadecimal.charAt(i.intValue());
                 if (c == characters.charAt(j.intValue())) {
-                    oremun[i.intValue()] = numbers(c);
+                    number[i.intValue()] = numbers(c);
                 } else if (c < 65) {
-                    oremun[i.intValue()] = new BigInteger("" + hexadecimal.charAt(i.intValue()));
+                    number[i.intValue()] = new BigInteger("" + hexadecimal.charAt(i.intValue()));
                 }
             }
 
@@ -180,7 +180,7 @@ public class ConverterController {
 
         for (BigInteger i = len.subtract(BigInteger.ONE), j = BigInteger.ZERO; i.compareTo(BigInteger.ZERO) >= 0; i = i
                 .subtract(BigInteger.ONE), j = j.add(BigInteger.ONE)) {
-            decimal = decimal.add(oremun[i.intValue()].multiply(powerOf(SIXTEEN, j)));
+            decimal = decimal.add(number[i.intValue()].multiply(powerOf(SIXTEEN, j)));
         }
         return decimal.toString();
     }

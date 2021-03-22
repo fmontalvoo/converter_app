@@ -8,6 +8,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputType;
+import android.text.SpannableStringBuilder;
 import android.text.method.ScrollingMovementMethod;
 import android.view.Gravity;
 import android.view.View;
@@ -21,15 +22,13 @@ import android.widget.Toast;
 
 import com.fmontalvoo.converter.controller.ConverterController;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity {
 
     private EditText txtNumber;
     private Spinner spnBase;
     private Spinner spnGoal;
     private TextView txtResult;
     private Button[] numbers;
-    private Button btnClear;
-    private Button btnDelete;
 
     private ConverterController converterController;
 
@@ -49,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         spnBase = findViewById(R.id.spnBase);
         String[] spnBaseValues = {getString(R.string.binary), getString(R.string.octal),
                 getString(R.string.decimal), getString(R.string.hexadecimal)};
-        spnBase.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, spnBaseValues));
+        spnBase.setAdapter(new ArrayAdapter(this, R.layout.spinner_item, spnBaseValues));
         spnBase = findViewById(R.id.spnBase);
         spnBase.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -57,8 +56,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 int a = optionA, b = -1;
                 String txt = txtNumber.getText().toString();
                 optionA = spnBase.getSelectedItemPosition();
-                view.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-                ((TextView) view).setGravity(Gravity.CENTER);
+
                 switch (optionA) {
                     case 0:
                         binaryConfig();
@@ -78,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         break;
                 }
                 txtNumber.setText("");
-                txtNumber.append(converterController.convert(format(txt), options(a, b)));
+                txtNumber.append(format(converterController.convert(txt, options(a, b))));
             }
 
             @Override
@@ -90,12 +88,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         spnGoal = findViewById(R.id.spnGoal);
         String[] spnGoalValues = {getString(R.string.hexadecimal), getString(R.string.decimal),
                 getString(R.string.octal), getString(R.string.binary)};
-        spnGoal.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, spnGoalValues));
+        spnGoal.setAdapter(new ArrayAdapter<>(this, R.layout.spinner_item, spnGoalValues));
         spnGoal.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                view.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-                ((TextView) view).setGravity(Gravity.CENTER);
                 optionB = spnGoal.getSelectedItemPosition();
                 convert();
             }
@@ -134,18 +130,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         numbers[14] = findViewById(R.id.btnE);
         numbers[15] = findViewById(R.id.btnF);
 
-        for (Button number : numbers) number.setOnClickListener(this);
-
-        btnClear = findViewById(R.id.btnClear);
-        btnClear.setOnClickListener(this);
-
-        btnDelete = findViewById(R.id.btnDelete);
-        btnDelete.setOnClickListener(this);
-
     }
 
-    @Override
-    public void onClick(View v) {
+
+    public void onPressed(View v) {
         int len = txtNumber.length();
         int id = v.getId();
         if (id == R.id.btnZero) {
@@ -185,7 +173,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             txtResult.setText("");
         } else if (id == R.id.btnDelete) {
             if (len != 0) {
-                String txt = txtNumber.getText().toString().substring(0, len - 1);
+                String txt = txtNumber.getText().toString().substring(0, len - 1).trim();
                 txtNumber.setText("");
                 txtNumber.append(txt);
             }
